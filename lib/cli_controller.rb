@@ -14,18 +14,16 @@ class CLIController
         puts "You did not enter a valid menu entry. Try again:"
         input = gets.chomp
       else
-      case input
-        when "1"
-          puts "Selecting search by name"
-          input = gets.chomp
-        when "2"
-          puts "Selecting search by ingredient"
-          input = gets.chomp
-        when "3"
-          puts "Selecting random"
-          input = gets.chomp
+        case input
+          when "1"
+            search_by_cocktail
+          when "2"
+            search_by_ingredient
+          when "3"
+            random_cocktail
         end
       end
+      input = gets.chomp
     end
 
   end
@@ -41,6 +39,16 @@ class CLIController
     puts "\n"
   end
 
-  
+  def search_by_cocktail
+    puts "searching by cocktail"
+  end
+
+  def search_by_ingredient
+    puts "searching by ingredient"
+  end
+
+  def random_cocktail
+    puts "here is a random cocktail"
+  end
 
 end

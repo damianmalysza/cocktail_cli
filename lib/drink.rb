@@ -11,6 +11,9 @@ class Drink
     @instructions = nil
   end
 
+  def self.create_from_collection
+
+  end
 
 
 
