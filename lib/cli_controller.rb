@@ -40,7 +40,8 @@ class CLIController
   end
 
   def search_by_cocktail
-    puts "searching by cocktail"
+    puts "What drink you looking for?"
+    Scraper.drink_list_by_name(gets.chomp)
   end
 
   def search_by_ingredient
