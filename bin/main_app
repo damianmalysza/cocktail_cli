@@ -2,6 +2,4 @@
 
 require_relative "../config/environment"
 
-drink = Drink.new("marg")
-
-puts drink.name
+CLIController.new.call
