@@ -1,6 +1,4 @@
-require_relative "../config/environment"
-
-class Scraper
+class CocktailCli::Scraper
 
   def get_page
     Nokogiri::HTML(URI.open("https://uk.thebar.com/cocktail-recipes?seeAll=true"))
@@ -11,8 +9,8 @@ class Scraper
   end
 
   def make_cocktail_objects
-    self.index_cocktails.each do |cocktail|
-      Drink.new(cocktail.css("h3").text, cocktail.css(".item-difficulty").text.strip, cocktail.attr("href"))
+    index_cocktails.each do |cocktail|
+      CocktailCli::Drink.new(cocktail.css("h3").text, cocktail.css(".item-difficulty").text.strip, cocktail.attr("href"))
     end
   end
 

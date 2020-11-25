@@ -1,6 +1,4 @@
-require_relative "../config/environment"
-
-class Drink
+class CocktailCli::Drink
   attr_accessor :name, :difficulty, :url
 
   @@all_drinks = []
@@ -42,5 +40,3 @@ class Drink
   end
 
 end
-
-binding.pry
