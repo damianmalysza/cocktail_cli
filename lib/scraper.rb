@@ -12,8 +12,8 @@ class Scraper
 
   def make_cocktail_objects
     self.index_cocktails.each do |cocktail|
-          # iterate through index_cocktails
-    # grab the URL, name, and difficulty and instantiate new instances of the drink class
+      # iterate through index_cocktails
+      # grab the URL, name, and difficulty and instantiate new instances of the drink class
     end
   end
 

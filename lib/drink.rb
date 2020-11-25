@@ -9,8 +9,7 @@ class Drink
     @name = name
     @difficulty = difficulty
     @url = url
-    @ingredients = self.ingredients
-    @@all_drinks << self
+    self.class.all_drinks << self
   end
 
   def doc
