@@ -1,8 +1,8 @@
 require_relative "../config/environment"
 
 class Drink
-  attr_accessor :name, :ingredients, :instructions
-  attr_reader :drink_id
+  attr_accessor :name, :ingredients, :instructions, :url
+
 
   def initialize(name)
     @name = name
@@ -13,10 +13,8 @@ class Drink
     @instructions = nil
   end
 
-  def self.create_from_collection
-
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
-
-
 
 end
