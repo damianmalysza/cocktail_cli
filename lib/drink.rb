@@ -42,5 +42,3 @@ class Drink
   end
 
 end
-
-binding.pry
