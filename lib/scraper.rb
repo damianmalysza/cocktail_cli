@@ -7,7 +7,7 @@ class Scraper
   end
 
   def index_cocktails
-    
+    self.get_page.css(".recipe-tile")
   end
 
   def make_cocktail_objects

@@ -7,3 +7,4 @@ gem "rake", "~> 12.0"
 gem 'pry'
 gem 'open-uri'
 gem 'nokogiri'
+gem 'colorize'

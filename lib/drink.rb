@@ -6,7 +6,10 @@ class Drink
   @@all_drinks = []
 
   def initialize(name = nil, difficulty = nil, url = nil)
-    @name
+    @name = name
+    @difficulty = difficulty
+    @url = url
+    @@all_drinks << self
   end
 
   def doc
@@ -26,7 +29,10 @@ class Drink
   end
 
   def present_drink_information_for(drink_object)
-
+    # present difficult for drink
+    # present the ingredients for the drink
+    # present the instructions for the drink
+    # format that in some kind of way
   end
 
   def self.random_drink_pun

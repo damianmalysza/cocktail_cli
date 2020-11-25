@@ -53,14 +53,14 @@ class CLIController
   end
 
   def search_by_difficulty
-    puts "searching by difficult"
+    puts "searching by difficulty"
     # present the difficulties available by iterating through Drink objects array and collecting array of difficultes, then calling .uniq on it
     # have user select the difficuly they would like to see
     # iterate through Drink object array and collect all Drink names with matching difficulty
     # present the list of drinks to the user
     # have user select the drink that they would like to get more information on
     # user is presented with the difficulty, ingredients, and instructions
-    # user is asked whether they want to search for aonther cocktail, return to main menu, or quit
+    # user is asked whether they want to search for another cocktail, return to main menu, or quit
   end
 
   def random_cocktail
