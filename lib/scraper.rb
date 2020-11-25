@@ -6,4 +6,12 @@ class Scraper
     Nokogiri::HTML(open("https://uk.thebar.com/cocktail-recipes?seeAll=true"))
   end
 
+  def index_cocktails
+
+  end
+
+  def make_cocktail_objects
+
+  end
+
 end

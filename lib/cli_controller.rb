@@ -34,7 +34,7 @@ class CLIController
 
   def menu
     puts "1. Search for cocktail by name"
-    puts "2. Search for cocktail by ingredient (e.g. vodka)"
+    puts "2. Search for cocktail by difficulty"
     puts "3. Get information for a random cocktail"
     puts "\n"
   end
