@@ -69,4 +69,11 @@ class CocktailCli::CLIController
     # Feed that the present_drink_information_for method
   end
 
+  def present_drink_information_for(drink_object)
+    # present difficulty for drink
+    # present the ingredients for the drink
+    # present the instructions for the drink
+    # format that in some kind of way
+  end
+
 end

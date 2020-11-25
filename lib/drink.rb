@@ -29,13 +29,6 @@ class Drink
     @@all_drinks
   end
 
-  def present_drink_information_for(drink_object)
-    # present difficulty for drink
-    # present the ingredients for the drink
-    # present the instructions for the drink
-    # format that in some kind of way
-  end
-
   def self.random_drink_pun
     [
       "Liquor might not solve all your problems, but it's worth a shot!",
