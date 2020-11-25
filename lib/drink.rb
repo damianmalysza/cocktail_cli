@@ -2,12 +2,14 @@ require_relative "../config/environment"
 
 class Drink
   attr_accessor :name, :ingredients, :instructions
-
-  @@potential_ingredients = []
+  attr_reader :drink_id
 
   def initialize(name)
     @name = name
-    @ingredients = {}
+    @ingredients = {
+      #ingredient1: measurement
+      #ingredient2: measurement
+    }
     @instructions = nil
   end
 
