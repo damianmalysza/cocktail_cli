@@ -1,5 +1,5 @@
 require 'pry'
-require 'open-ur'
+require 'open-uri'
 require 'nokogiri'
 
 require_relative "../lib/cocktail_cli"
