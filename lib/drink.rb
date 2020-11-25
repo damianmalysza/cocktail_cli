@@ -12,8 +12,8 @@ class Drink
     self.class.all_drinks << self
   end
 
-  def doc
-    Nokogiri::HTML(open(self.url))
+  def drink_page
+    Nokogiri::HTML(URI.open("https://uk.thebar.com/#{self.url}"))
   end
 
   def ingredients
@@ -49,3 +49,5 @@ class Drink
   end
 
 end
+
+binding.pry

@@ -1,6 +1,6 @@
 require_relative "../config/environment"
 
-class CLIController
+class CocktailCli::CLIController
 
   def call
     # initiate instantiation of drinks
