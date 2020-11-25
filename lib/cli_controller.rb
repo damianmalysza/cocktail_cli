@@ -21,7 +21,7 @@ class CLIController
           when "1"
             search_by_cocktail
           when "2"
-            search_by_ingredient
+            search_by_difficulty
           when "3"
             random_cocktail
         end

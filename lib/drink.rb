@@ -1,7 +1,7 @@
 require_relative "../config/environment"
 
 class Drink
-  attr_accessor :name, :ingredients, :difficulty, :instructions, :url
+  attr_accessor :name, :difficulty, :url
 
   @@all_drinks = []
 
@@ -9,6 +9,7 @@ class Drink
     @name = name
     @difficulty = difficulty
     @url = url
+    @ingredients = self.ingredients
     @@all_drinks << self
   end
 
@@ -17,11 +18,12 @@ class Drink
   end
 
   def ingredients
-    @ingredients = {}
+    # return a hash of the ingredients
+    # hash will have ingredient as keys, and the measurements as values
   end
 
   def instructions
-    @instructions = []
+    # return the order list as a string that you can just puts the ordered list
   end
 
   def self.all_drinks
@@ -29,7 +31,7 @@ class Drink
   end
 
   def present_drink_information_for(drink_object)
-    # present difficult for drink
+    # present difficulty for drink
     # present the ingredients for the drink
     # present the instructions for the drink
     # format that in some kind of way
