@@ -65,6 +65,8 @@ class CLIController
 
   def random_cocktail
     puts "here is a random cocktail"
+    # Use .sample method on Drink class array to return random Drink object
+    # Feed that the present_drink_information_for method
   end
 
 end

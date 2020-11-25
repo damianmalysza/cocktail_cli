@@ -7,7 +7,7 @@ class Scraper
   end
 
   def index_cocktails
-
+    
   end
 
   def make_cocktail_objects

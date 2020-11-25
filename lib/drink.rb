@@ -10,7 +10,7 @@ class Drink
   end
 
   def doc
-    @doc ||= Nokogiri::HTML(open(self.url))
+    Nokogiri::HTML(open(self.url))
   end
 
   def ingredients
