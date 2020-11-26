@@ -15,6 +15,12 @@ class CocktailCli::Drink
   end
 
   def ingredients
+    return_hash = {}
+    drink_page.css(".ingredients .instruction-item-list li").css(":not(.instruction-item-list-units)").each do |ingredient|
+      #binding.pry
+      return_hash[ingredient.css(".instruction-item-list-detail").text.strip] = "#{ingredient.css(".instruction-item-list-quantity span").attr("data-initialvalue")} #{ingredient.css(".instruction-item-list-quantity span").attr("data-unit")}" unless ingredient.css(".instruction-item-list-detail").text.strip == ""
+    end
+    return_hash
     # return a hash of the ingredients
     # hash will have ingredient as keys, and the measurements as values
   end
