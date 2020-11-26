@@ -2,6 +2,4 @@
 
 require_relative "../config/environment"
 
-CocktailCli::Scraper.new.make_drink_objects
-
-binding.pry
+CocktailCli::CLIController.new.call

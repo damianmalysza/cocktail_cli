@@ -1,8 +1,7 @@
 class CocktailCli::CLIController
 
   def call
-    # initiate instantiation of drinks
-    # call the user 
+    CocktailCli::Scraper.new.make_drink_objects
     self.intro_artwork
     puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
     puts "Here are some cool things you can do:\n\n"
@@ -62,9 +61,7 @@ class CocktailCli::CLIController
   end
 
   def random_cocktail
-    puts "here is a random cocktail"
-    # Use .sample method on Drink class array to return random Drink object
-    # Feed that the present_drink_information_for method
+    present_drink_information_for(CocktailCli::Drink.all_drinks.sample)
   end
 
   def present_drink_information_for(drink)
