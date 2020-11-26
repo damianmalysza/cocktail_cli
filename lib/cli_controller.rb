@@ -76,10 +76,6 @@ class CocktailCli::CLIController
     puts "Instructions for making your drink"
     drink.instructions.each {|instruction| puts instruction}
     nil
-    # present difficulty for drink
-    # present the ingredients for the drink
-    # present the instructions for the drink
-    # format that in some kind of way
   end
 
 end
