@@ -28,6 +28,7 @@ class CocktailCli::Drink
     drink_page.css(".method-list li p").collect.with_index(1) do |instruction, indx|
       "#{indx}. #{instruction.text}" unless instruction.text == nil
     end
+    #TODO: fix printing blank instructions (some pages don't have p element but use div).
   end
 
   def self.all_drinks

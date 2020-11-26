@@ -13,5 +13,4 @@ class CocktailCli::Scraper
       CocktailCli::Drink.new(cocktail.css("h3").text, cocktail.css(".item-difficulty").text.strip, cocktail.attr("href"))
     end
   end
-
 end
