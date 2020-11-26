@@ -25,6 +25,9 @@ class CocktailCli::Drink
   end
 
   def instructions
+    drink_page.css(".method-list li p").collect.with_index(1) do |instruction, indx|
+      "#{indx}. #{instruction.text}" unless instruction.text == nil
+    end
     # return the order list as a string that you can just puts the ordered list
   end
 
