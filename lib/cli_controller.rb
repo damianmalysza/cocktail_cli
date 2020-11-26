@@ -67,7 +67,15 @@ class CocktailCli::CLIController
     # Feed that the present_drink_information_for method
   end
 
-  def present_drink_information_for(drink_object)
+  def present_drink_information_for(drink)
+    puts "\n#{drink.name} -- Difficulty: #{drink.difficulty}"
+    puts "-------------------------------------------------"
+    puts "Ingredients needed:"
+    drink.ingredients.each {|ingredient, amount| puts "- #{ingredient}: #{amount}" }
+    puts "-------------------------------------------------"
+    puts "Instructions for making your drink"
+    drink.instructions.each {|instruction| puts instruction}
+    nil
     # present difficulty for drink
     # present the ingredients for the drink
     # present the instructions for the drink
