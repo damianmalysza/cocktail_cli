@@ -16,7 +16,6 @@ class CocktailCli::Drink
   end
 
   def ingredients
-    return_hash = {}
     Hash.new.tap do |return_hash|
       drink_page.css(".ingredients .instruction-item-list li").css(":not(.instruction-item-list-units)").each do |ingredient|
         # on each iteration added a new hash key named as ingredient with value set as the quantity of ingredient and unit of ingredient, unless the ingredient name is blank
