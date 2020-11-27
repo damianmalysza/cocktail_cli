@@ -24,24 +24,23 @@ class CocktailCli::CLIController
   def user_initial_greeting
     puts self.intro_artwork
     puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
-    puts "Here are some cool things you can do:\n\n"
   end
 
   def call_user_menu_interaction
-    puts "-------------------------------------------------"
+    puts self.divider
+    puts "Menu Options:"
     self.class.menu_options.each.with_index(1) {|(option, method), indx| puts "#{indx}. #{option}"}
-    puts "Please select from the menu option using the corresponding number. Type 'quit' to exit: "
+    puts self.divider
+    puts "Please select the menu option using the corresponding number. Type 'quit' to exit: "
     
     input = gets.chomp
-    while input.downcase.strip != "quit"
-      if input.to_i > self.class.menu_options.length || input.to_i < 0
+    if input.downcase.strip != "quit"
+      while input.to_i > self.class.menu_options.length || input.to_i <= 0
         puts "You did not enter a valid menu entry. Try again:"
         input = gets.chomp
-      else
-        self.class.menu_options.each.with_index(1) {|(option, method), indx| send("#{method}") if indx == input.to_i }
       end
-      puts "Would you like to do something else? If not, type 'quit'"
-      input = gets.chomp
+      self.class.menu_options.each.with_index(1) {|(option, method), indx| send("#{method}") if indx == input.to_i }
+      call_user_menu_interaction
     end
   end
 
@@ -54,16 +53,25 @@ class CocktailCli::CLIController
     
     cocktail_list = CocktailCli::Drink.find_drinks(gets.chomp)
     if cocktail_list.length == 0
-      puts "No drinks found with the name, would you like to try again? (Y/N)"
+      puts "Oh no - no drinks found with that name!".colorize(:red) + " Would you like to try searching again? (Y/N)".colorize(:green)
       search_by_cocktail if gets.chomp.downcase == "y"
     elsif cocktail_list.length == 1
       present_drink_information_for(cocktail_list[0])
     elsif cocktail_list.length > 1
-      puts "Multiple drinks found with that name:".colorize(:orange)
+      puts self.divider
+      puts "Multiple drinks found with that name:\n".colorize(:orange)
       cocktail_list.each.with_index(1) {|drink, indx| puts "#{indx}. #{drink.name}"}
       puts "Enter the number for the drink you would like more information on: "
-      present_drink_information_for(cocktail_list[gets.chomp.to_i - 1])
+      input = gets.chomp
+      while input.to_i > cocktail_list.length || input.to_i <= 0
+        break if input.downcase.strip == "quit"
+        puts "Invalid list entry. Please input a valid number on the list above or input 'quit' to stop"
+        input = gets.chomp
+      end
+      present_drink_information_for(cocktail_list[input.to_i - 1]) unless input.downcase.strip == "quit"
     end
+
+
     # user is asked whether they want to search for another cocktail, return to main menu, or quit
   end
 
@@ -91,17 +99,28 @@ class CocktailCli::CLIController
 
   def present_drink_information_for(drink)
     puts "\n#{drink.name} -- Difficulty: #{drink.difficulty}"
-    puts "-------------------------------------------------"
+    puts self.divider
     puts "Ingredients needed:"
-    drink.ingredients.each {|ingredient, amount| puts "- #{ingredient}: #{amount}" }
-    puts "-------------------------------------------------"
+    begin
+      drink.ingredients.each {|ingredient, amount| puts "- #{ingredient}: #{amount}" }
+    rescue
+      puts "Uh oh - ingredients for this drink currently unavailable :(".colorize(:orange)
+    end
+    puts self.divider
     puts "Instructions for making your drink"
-    drink.instructions.each {|instruction| puts instruction}
-    nil
+    begin
+      drink.instructions.each {|instruction| puts instruction}
+    rescue
+      puts "Uh oh - instructions for this drink currently unavailable :(".colorize(:orange)
+    end
   end
 
   def goodbye_messsage
-    puts "Thanks for using the CLI. We'll leave you with this pun: #{CocktailCli::Drink.random_drink_pun}"
+    puts self.divider
+    puts "Thanks for using the CLI. Here is pun too add to your pun toolbelt: #{CocktailCli::Drink.random_drink_pun}"
   end
 
+  def divider
+    "=========================================================================================================================================="
+  end
 end
