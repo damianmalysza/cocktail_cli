@@ -59,7 +59,7 @@ class CocktailCli::CLIController
       present_drink_information_for(cocktail_list[0])
     elsif cocktail_list.length > 1
       puts self.divider
-      puts "Multiple drinks found with that name:\n".colorize(:orange)
+      puts "Multiple drinks found with that name:\n"
       cocktail_list.each.with_index(1) {|drink, indx| puts "#{indx}. #{drink.name}"}
       puts "Enter the number for the drink you would like more information on: "
       input = gets.chomp
