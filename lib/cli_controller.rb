@@ -1,42 +1,48 @@
 class CocktailCli::CLIController
 
+  @@menu_options = {
+    "Search for cocktail by name" => "search_by_cocktail",
+    "Search for cocktail by difficulty" => "search_by_difficulty",
+    "Get information for random cocktail" => "random_cocktail"
+  }
+
+  def self.menu_options
+    @@menu_options
+  end
+
   def call
     CocktailCli::Scraper.new.make_drink_objects
-    self.intro_artwork
-    puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
-    puts "Here are some cool things you can do:\n\n"
-    self.menu
-    puts "Please select from the menu options above using the corresponding number. Type 'quit' to exit: "
-    
-    input = gets.chomp
-    while input != "quit"
-      if (1..3).none?(input.to_i)
-        puts "You did not enter a valid menu entry. Try again:"
-        input = gets.chomp
-      else
-        case input
-          when "1"
-            search_by_cocktail
-          when "2"
-            search_by_difficulty
-          when "3"
-            random_cocktail
-        end
-      end
-      input = gets.chomp
-    end
-
+    self.user_initial_greeting
+    self.call_user_menu_interaction
+    self.goodbye_messsage
   end
 
   def intro_artwork
-    puts File.readlines("./lib/cocktail_art.txt") {|line| puts line}
+    File.readlines("./lib/cocktail_art.txt") {|line| puts line}
   end
 
-  def menu
-    puts "1. Search for cocktail by name"
-    puts "2. Search for cocktail by difficulty"
-    puts "3. Get information for a random cocktail"
-    puts "\n"
+  def user_initial_greeting
+    puts self.intro_artwork
+    puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
+    puts "Here are some cool things you can do:\n\n"
+  end
+
+  def call_user_menu_interaction
+    puts "-------------------------------------------------"
+    self.class.menu_options.each.with_index(1) {|(option, method), indx| puts "#{indx}. #{option}"}
+    puts "Please select from the menu option using the corresponding number. Type 'quit' to exit: "
+    
+    input = gets.chomp
+    while input.downcase.strip != "quit"
+      if input.to_i > self.class.menu_options.length || input.to_i < 0
+        puts "You did not enter a valid menu entry. Try again:"
+        input = gets.chomp
+      else
+        self.class.menu_options.each.with_index(1) {|(option, method), indx| send("#{method}") if indx == input.to_i }
+      end
+      puts "Would you like to do something else? If not, type 'quit'"
+      input = gets.chomp
+    end
   end
 
   def search_by_cocktail
@@ -92,6 +98,10 @@ class CocktailCli::CLIController
     puts "Instructions for making your drink"
     drink.instructions.each {|instruction| puts instruction}
     nil
+  end
+
+  def goodbye_messsage
+    puts "Thanks for using the CLI. We'll leave you with this pun: #{CocktailCli::Drink.random_drink_pun}"
   end
 
 end
