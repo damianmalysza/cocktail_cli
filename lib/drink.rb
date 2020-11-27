@@ -35,6 +35,13 @@ class CocktailCli::Drink
     @@all_drinks
   end
 
+  def self.find_drinks(search_term)
+    self.all_drinks.select do |drink|
+      drink.name.downcase.include?(search_term.downcase)
+    end
+    #returns array of drink objects whose name includes the search term
+  end
+
   def self.random_drink_pun
     [
       "Liquor might not solve all your problems, but it's worth a shot!",

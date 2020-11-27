@@ -2,4 +2,5 @@
 
 require_relative "../config/environment"
 
-CocktailCli::CLIController.new.call
+binding.pry
+#CocktailCli::CLIController.new.call
