@@ -61,7 +61,14 @@ class CocktailCli::CLIController
   end
 
   def random_cocktail
-    present_drink_information_for(CocktailCli::Drink.all_drinks.sample)
+    # this method return information for a random object from the all drinks array from the Class object
+    # exception handling is needed here as some drinks don't have the secondary information page on the site. 
+    # if an error occurs, the method will retry. Low count of these instances so these shouldn't occur a lot.
+    begin
+      present_drink_information_for(CocktailCli::Drink.all_drinks.sample)
+    rescue
+      retry
+    end
   end
 
   def present_drink_information_for(drink)
