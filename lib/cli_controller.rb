@@ -63,9 +63,8 @@ class CocktailCli::CLIController
       cocktail_list.each.with_index(1) {|drink, indx| puts "#{indx}. #{drink.name}"}
       puts "Enter the number for the drink you would like more information on: "
       input = gets.chomp
-      while input.to_i > cocktail_list.length || input.to_i <= 0
-        break if input.downcase.strip == "quit"
-        puts "Invalid list entry. Please input a valid number on the list above or input 'quit' to stop"
+      while (input.to_i > cocktail_list.length || input.to_i <= 0) && input != "quit"
+        puts "Invalid list entry. Please input a valid number on the list above or input 'quit' to return to main menu"
         input = gets.chomp
       end
       present_drink_information_for(cocktail_list[input.to_i - 1]) unless input.downcase.strip == "quit"
@@ -104,20 +103,21 @@ class CocktailCli::CLIController
     begin
       drink.ingredients.each {|ingredient, amount| puts "- #{ingredient}: #{amount}" }
     rescue
-      puts "Uh oh - ingredients for this drink currently unavailable :(".colorize(:orange)
+      puts "Uh oh - ingredients for this drink currently unavailable :(".colorize(:red)
     end
     puts self.divider
     puts "Instructions for making your drink"
     begin
       drink.instructions.each {|instruction| puts instruction}
     rescue
-      puts "Uh oh - instructions for this drink currently unavailable :(".colorize(:orange)
+      puts "Uh oh - instructions for this drink currently unavailable :(".colorize(:red)
     end
   end
 
   def goodbye_messsage
     puts self.divider
-    puts "Thanks for using the CLI. Here is pun too add to your pun toolbelt: #{CocktailCli::Drink.random_drink_pun}"
+    puts "Thanks for using the CLI! Here's a pun to enjoy while sipping on your drink: #{CocktailCli::Drink.random_drink_pun}"
+    puts "Cheers!"
   end
 
   def divider
