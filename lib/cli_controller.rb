@@ -2,14 +2,18 @@ class CocktailCli::CLIController
 
   @@menu_options = {
     "Search for cocktail by name" => "search_by_cocktail",
-    "Search for cocktail by difficulty" => "search_by_difficulty",
-    "Get information for random cocktail" => "random_cocktail"
+    "Get a random cocktail based on difficulty" => "random_cocktail_by_diffculty",
+    "Spin the wheel and get a random cocktail" => "random_cocktail"
   }
 
   def self.menu_options
     @@menu_options
   end
 
+  def present_menu_options
+    self.class.menu_options.each.with_index(1) {|(option, method), indx| puts "#{indx}. #{option}"}
+  end
+  
   def call
     CocktailCli::Scraper.new.make_drink_objects
     self.user_initial_greeting
@@ -29,7 +33,7 @@ class CocktailCli::CLIController
   def call_user_menu_interaction
     puts self.divider
     puts "Menu Options:"
-    self.class.menu_options.each.with_index(1) {|(option, method), indx| puts "#{indx}. #{option}"}
+    self.present_menu_options
     puts self.divider
     puts "Please select the menu option using the corresponding number. Type 'quit' to exit: "
     
@@ -40,7 +44,10 @@ class CocktailCli::CLIController
         input = gets.chomp
       end
       self.class.menu_options.each.with_index(1) {|(option, method), indx| send("#{method}") if indx == input.to_i }
-      call_user_menu_interaction
+      puts self.divider
+      puts "Would you like to do something else? (Y/N)"
+      input = gets.chomp
+      call_user_menu_interaction if input.downcase.strip == "y"
     end
   end
 
@@ -65,18 +72,11 @@ class CocktailCli::CLIController
       end
       present_drink_information_for(cocktail_list[input.to_i - 1]) unless input.downcase.strip == "quit"
     end
-    
+
   end
 
-  def search_by_difficulty
-    puts "searching by difficulty"
-    # present the difficulties available by iterating through Drink objects array and collecting array of difficultes, then calling .uniq on it
-    # have user select the difficuly they would like to see
-    # iterate through Drink object array and collect all Drink names with matching difficulty
-    # present the list of drinks to the user
-    # have user select the drink that they would like to get more information on
-    # user is presented with the difficulty, ingredients, and instructions
-    # user is asked whether they want to search for another cocktail, return to main menu, or quit
+  def random_cocktail_by_diffculty
+    puts "random cocktail by difficulty"
   end
 
   def random_cocktail

@@ -3,14 +3,14 @@ class CocktailCli::Drink
 
   @@all_drinks = []
 
-  @@difficulties
+  @@difficulties = []
 
   def initialize(name = nil, difficulty = nil, url = nil)
     @name = name
     @difficulty = difficulty
     @url = url
     self.class.all_drinks << self
-    self.class.difficultes << difficulty unless self.class.difficulties.include?(difficulty)
+    self.class.difficulties << difficulty unless self.class.difficulties.include?(difficulty)
   end
 
   def drink_page
