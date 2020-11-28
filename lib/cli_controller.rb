@@ -25,6 +25,10 @@ class CocktailCli::CLIController
     File.readlines("./lib/cocktail_art.txt") {|line| puts line}
   end
 
+  def cheers_text
+    File.readlines("./lib/cheers.txt") {|line| puts line}
+  end
+
   def user_initial_greeting
     puts self.intro_artwork
     puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
@@ -127,7 +131,7 @@ class CocktailCli::CLIController
   def goodbye_messsage
     puts self.divider
     puts "Thanks for using the CLI! Here's a pun to enjoy while sipping on your drink: #{CocktailCli::Drink.random_drink_pun}"
-    puts "Cheers!"
+    puts self.cheers_text
   end
 
   def divider
