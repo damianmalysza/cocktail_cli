@@ -10,7 +10,7 @@ class CocktailCli::Drink
     @difficulty = difficulty
     @url = url
     self.class.all_drinks << self
-    self.class.difficulties << difficulty unless self.class.difficulties.include?(difficulty)
+    self.class.difficulties << difficulty unless self.class.difficulties.include?(difficulty) || difficulty == ""
   end
 
   def drink_page
