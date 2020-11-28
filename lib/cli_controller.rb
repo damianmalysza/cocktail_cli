@@ -45,11 +45,7 @@ class CocktailCli::CLIController
   end
 
   def search_by_cocktail
-    # prompt user to enter search string
     puts "What cocktail are you looking to make?"
-
-    # iterate through Drink class array of instantiated drinks and find ones that have the user string in the name
-    # present list of found drinks to user, if none found ask if user wants to try again or return to main menu
     
     cocktail_list = CocktailCli::Drink.find_drinks(gets.chomp)
     if cocktail_list.length == 0
@@ -69,9 +65,7 @@ class CocktailCli::CLIController
       end
       present_drink_information_for(cocktail_list[input.to_i - 1]) unless input.downcase.strip == "quit"
     end
-
-
-    # user is asked whether they want to search for another cocktail, return to main menu, or quit
+    
   end
 
   def search_by_difficulty

@@ -3,11 +3,14 @@ class CocktailCli::Drink
 
   @@all_drinks = []
 
+  @@difficulties
+
   def initialize(name = nil, difficulty = nil, url = nil)
     @name = name
     @difficulty = difficulty
     @url = url
     self.class.all_drinks << self
+    self.class.difficultes << difficulty unless self.class.difficulties.include?(difficulty)
   end
 
   def drink_page
@@ -33,6 +36,10 @@ class CocktailCli::Drink
 
   def self.all_drinks
     @@all_drinks
+  end
+
+  def self.difficulties
+    @@difficulties
   end
 
   def self.find_drinks(search_term)
