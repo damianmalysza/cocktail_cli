@@ -51,7 +51,11 @@ class CocktailCli::CLIController
       puts self.divider
       puts "Would you like to do something else? (Y/N)".colorize(:green)
       input = gets.chomp
-      call_user_menu_interaction if input.downcase.strip == "y"
+      while input.downcase.strip !~ /\b[yn]\b{1}/
+        puts "Invalid input - please enter either 'Y' or 'N'"
+        input = gets.chomp
+      end
+      call_user_menu_interaction if input.downcase == "y"
     end
   end
 
@@ -61,7 +65,12 @@ class CocktailCli::CLIController
     cocktail_list = CocktailCli::Drink.find_drinks(gets.chomp)
     if cocktail_list.length == 0
       puts "Oh no - no drinks found with that name!".colorize(:red) + " Would you like to try searching again? (Y/N)".colorize(:green)
-      search_by_cocktail if gets.chomp.downcase == "y"
+      input = gets.chomp
+      while input.downcase.strip !~ /\b[yn]\b{1}/
+        puts "Invalid input - please enter either 'Y' or 'N'"
+        input = gets.chomp
+      end
+      search_by_cocktail if input.downcase == "y"
     elsif cocktail_list.length == 1
       present_drink_information_for(cocktail_list[0])
     elsif cocktail_list.length > 1
