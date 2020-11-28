@@ -21,14 +21,6 @@ class CocktailCli::CLIController
     self.goodbye_messsage
   end
 
-  def intro_artwork
-    File.readlines("./lib/cocktail_art.txt") {|line| puts line}
-  end
-
-  def cheers_text
-    File.readlines("./lib/cheers.txt") {|line| puts line}
-  end
-
   def user_initial_greeting
     puts self.intro_artwork
     puts "Welcome to the Cocktail List of Information, otherwise kwown as 'CLI' ;)"
@@ -101,9 +93,6 @@ class CocktailCli::CLIController
   end
 
   def random_cocktail(difficulty = nil)
-    # this method return information for a random object from the all drinks array from the Class object
-    # exception handling is needed here as some drinks don't have the secondary information page on the site. 
-    # if an error occurs, the method will retry. Low count of these instances so these shouldn't occur a lot.
     if difficulty == nil
       begin
         present_drink_information_for(CocktailCli::Drink.all_drinks.sample)
@@ -146,4 +135,13 @@ class CocktailCli::CLIController
   def divider
     "=========================================================================================================================================="
   end
+
+  def intro_artwork
+    File.readlines("./lib/cocktail_art.txt") {|line| puts line}
+  end
+
+  def cheers_text
+    File.readlines("./lib/cheers.txt") {|line| puts line}
+  end
+
 end
