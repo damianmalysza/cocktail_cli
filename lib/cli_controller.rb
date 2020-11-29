@@ -110,7 +110,7 @@ class CocktailCli::CLIController
       puts "Uh oh - ingredients for this drink currently unavailable :(".colorize(:red)
     end
     puts self.divider
-    puts "Instructions for making your drink"
+    puts "Instructions for making your drink:"
     begin
       drink.instructions.each {|instruction| puts instruction}
     rescue
