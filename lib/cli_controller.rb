@@ -82,7 +82,7 @@ class CocktailCli::CLIController
 
   def random_cocktail_by_diffculty
     puts "Below are the difficulties available:"
-    CocktailCli::Drink.difficulties.each.with_index(1) {|difficulty, indx| puts "#{indx} #{difficulty}"}
+    CocktailCli::Drink.difficulties.each.with_index(1) {|difficulty, indx| puts "#{indx}. #{difficulty}"}
     puts "Enter the corresponding number for the difficulty you would like to get a cocktail for:".colorize(:green)
     input = gets.chomp
     while (input.to_i > CocktailCli::Drink.difficulties.length || input.to_i <= 0) && input != "quit"

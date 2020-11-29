@@ -15,7 +15,6 @@ class CocktailCli::Drink
 
   def drink_page
     Nokogiri::HTML(URI.open("https://uk.thebar.com/#{self.url}"))
-    # TODO: do not instantiate objects if get a runtime error on attempting to load URL
   end
 
   def ingredients
