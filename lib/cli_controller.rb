@@ -94,17 +94,9 @@ class CocktailCli::CLIController
 
   def random_cocktail(difficulty = nil)
     if difficulty == nil
-      begin
         present_drink_information_for(CocktailCli::Drink.all_drinks.sample)
-      rescue
-        retry
-      end
     else
-      begin
         present_drink_information_for(CocktailCli::Drink.all_drinks.select {|drink| drink.difficulty == difficulty}.sample)
-      rescue
-        retry
-      end
     end
   end
 
