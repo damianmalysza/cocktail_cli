@@ -54,7 +54,7 @@ class CocktailCli::CLIController
   def search_by_cocktail
     puts "What cocktail are you looking to make?"
     
-    cocktail_list = CocktailCli::Drink.find_drinks(gets.chomp)
+    cocktail_list = CocktailCli::Drink.find_drinks(gets.strip)
     if cocktail_list.length == 0
       puts "Oh no - no drinks found with that name!".colorize(:red) + " Would you like to try searching again? (Y/N)".colorize(:green)
       input = gets.chomp
