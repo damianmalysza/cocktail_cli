@@ -120,7 +120,7 @@ class CocktailCli::CLIController
 
   def goodbye_messsage
     puts self.divider
-    puts "Thanks for using the CLI! Here's a pun to enjoy while sipping on your drink: #{CocktailCli::Drink.random_drink_pun}"
+    puts "Thanks for using the CLI! Here's a pun to enjoy while sipping on your drink: #{CocktailCli::Drink.random_drink_pun.colorize(:blue)}"
     puts self.cheers_text
   end
 
