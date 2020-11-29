@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["damian.malysza@gmail.com"]
 
   spec.summary       = %q{CLI Application that allows users to look up cocktail information.}
-  spec.description   = %q{CLI Application will allows users to search for cocktails by name or ingredient and find information on them or search for a random cocktail.}
+  spec.description   = %q{CLI Application will allows users to search for cocktails by name or ingredient and find information on them or search for a random cocktail by difficulty or completely random.}
   spec.homepage      = "https://github.com/damianmalysza/cocktail_cli"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
